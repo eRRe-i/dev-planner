@@ -25,7 +25,6 @@ client.on('messageCreate', (message) => {
 })
 
 client.on('messageCreate', async (message) => {
-  console.log(JSON.stringify(message, null, 2))
   if (message.content.startsWith('!contributions')) {
     const username = message.content.split(' ')[1]
     try {
@@ -49,11 +48,3 @@ client.on('messageCreate', async (message) => {
 })
 
 client.login(process.env.TOKEN)
-
-// 2. permitir que o usuário possa utilizer !contributions !github -me para retornar seu usuário.
-// 3. Com o usuário registrado , o usuário pode apenas digitar !contributions ou !contrib para mostrar seu proprio gráfico de contribuições, não precisando mais passar o nome de usuário GH
-// 4. Um !contrib -guide explicando com dicas para realizar contribuições no GH. Apenas coloque um loremipsum de um parágrafo, irei preencher depois
-// 5. um !contrib -help explicando todos os comandos existentes para contrib
-// 6. um !commands para uma lista e breve explicação de todos os comandos.
-
-// Primeiro, vamos começar com o primeiro passo e depois fazemos os demais.
