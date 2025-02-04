@@ -18,7 +18,6 @@ function generateImage(weeks: Array<ContributionWeeksDTO>) {
   const defaultColor = 'rgba(235, 237, 240, 0.15)'
   const textColor = '#FFFFFF'
   const legendColors = [defaultColor, '#9be9a8', '#40c463', '#30a14e', '#216e39']
-
   const cyanShades = ['#6c7171', '#81d4fa', '#4fc3f7', '#29b6f6', '#0288d1']
 
   let lastDay: ContributionDayDTO
@@ -98,6 +97,7 @@ function generateImage(weeks: Array<ContributionWeeksDTO>) {
   const legendX = margin
   const legendY = canvasHeight - 30
 
+  // Legenda para legendColors
   ctx.fillStyle = textColor
   ctx.fillText('Menos', legendX, legendY + 12)
 
@@ -115,6 +115,30 @@ function generateImage(weeks: Array<ContributionWeeksDTO>) {
   ctx.fillText(
     'Mais',
     legendX + 50 + legendColors.length * (legendSquareSize + legendGap) + 10,
+    legendY + 12,
+  )
+
+  // Legenda para cyanShades (alinhada à direita)
+  const cyanShadesStartX =
+    canvasWidth - margin - cyanShades.length * (legendSquareSize + legendGap) - 50
+
+  ctx.fillStyle = textColor
+  ctx.fillText('Menos', cyanShadesStartX - 50, legendY + 12)
+
+  cyanShades.forEach((color, i) => {
+    ctx.fillStyle = color
+    ctx.fillRect(
+      cyanShadesStartX + i * (legendSquareSize + legendGap),
+      legendY,
+      legendSquareSize,
+      legendSquareSize,
+    )
+  })
+
+  ctx.fillStyle = textColor
+  ctx.fillText(
+    'Mais',
+    cyanShadesStartX + cyanShades.length * (legendSquareSize + legendGap) + 10,
     legendY + 12,
   )
 
